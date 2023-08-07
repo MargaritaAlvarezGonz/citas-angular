@@ -6,10 +6,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crear-cita.component.css']
 })
 export class CrearCitaComponent implements OnInit {
+  nombre= '';
+  fecha= '';
+  hora= '';
+  mensaje='';
+
+  formularioIncorrecto=false;
 
   constructor() { }
 
   ngOnInit() {
+  }
+  agregarCita(){
+    if(this.nombre === '' || this.fecha === '' || this.hora === '' || this.mensaje === '' ){
+      this.formularioIncorrecto=true;
+      return
+    }
+    this.formularioIncorrecto = false;
+
+    //este objeto es el que se va a enviar al padre
+    const CITA ={
+      nombre: this.nombre,
+      fecha: this.fecha,
+      hora: this.hora,
+      mensaje: this.mensaje
+    }
+    this.resetCampos();
+  }
+  //método para resetear los campos
+  resetCampos(){
+  this.nombre= '';
+  this.fecha= '';
+  this.hora= '';
+  this.mensaje='';
   }
 
 }
