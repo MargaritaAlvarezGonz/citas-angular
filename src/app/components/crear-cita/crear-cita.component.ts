@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-crear-cita',
@@ -12,6 +12,7 @@ export class CrearCitaComponent implements OnInit {
   mensaje='';
 
   formularioIncorrecto=false;
+  @Output() nuevaCita = new EventEmitter<any>();
 
   constructor() { }
 
@@ -24,6 +25,7 @@ export class CrearCitaComponent implements OnInit {
     }
     this.formularioIncorrecto = false;
 
+
     //este objeto es el que se va a enviar al padre
     const CITA ={
       nombre: this.nombre,
@@ -31,6 +33,7 @@ export class CrearCitaComponent implements OnInit {
       hora: this.hora,
       mensaje: this.mensaje
     }
+    this.nuevaCita.emit(CITA);
     this.resetCampos();
   }
   //método para resetear los campos
